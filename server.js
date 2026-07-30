@@ -30,6 +30,7 @@ const corsOptions = {
     const allowedOrigins = [
       'http://localhost:3000',
       'http://localhost:5173',
+      'https://budget-wise-front-end-w7fh.vercel.app',
       process.env.FRONTEND_URL
     ].filter(Boolean);
 
