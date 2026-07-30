@@ -1,84 +1,171 @@
-# BudgetWise Backend - نظام إدارة الميزانية الذكي 💰
+# BudgetWise Backend
 
-الباك إند (Backend) لتطبيق **BudgetWise**، وهو منصة ذكية مصممة لمساعدتك في التخطيط المالي وتتبع نفقاتك بسهولة، بالإضافة إلى توفير مساعد ذكي مدمج لتقديم نصائح مالية بناءً على ميزانيتك.
+Backend for **BudgetWise**, an AI-powered personal budget management platform built with **Node.js**, **Express.js**, and **MongoDB**. The application provides secure RESTful APIs for authentication, budget management, activity planning, AI-powered financial recommendations, user profiles, and real-time communication.
 
-هذا المشروع مبني باستخدام **Node.js, Express, و MongoDB**، وهو مُهيأ بالكامل للعمل إما على خوادم تقليدية (مثل VPS) أو في بيئات بلا خوادم (Serverless) مثل **Vercel**.
+## Live API
 
-## 🚀 التقنيات المستخدمة
-- **Node.js & Express:** بناء الـ API.
-- **MongoDB & Mongoose:** قاعدة البيانات وإدارتها (مع دعم الـ Connection Caching لبيئات Serverless).
-- **Socket.io:** للإشعارات الحية والدردشة (يعمل محلياً، ويُعطل تلقائياً في Vercel).
-- **JWT & Passport:** المصادقة وحماية المسارات.
-- **Multer:** لرفع وتخزين الملفات (الصور الشخصية).
+**Backend API:** https://budget-wise-back-end-five.vercel.app/
 
-## 🚀 كيفية تشغيل المشروع
+**Frontend:** https://budget-wise-front-end-w7fh.vercel.app/
 
-### التطوير المحلي (Local Development)
-1. **تثبيت الحزم:**
-   ```bash
-   npm install
-   ```
-
-2. **تشغيل الخادم:**
-   ```bash
-   npm run dev
-   ```
-   سيعمل الخادم افتراضياً على المنفذ `5000`.
-
-### الاستضافة على Vercel (Production)
-المشروع جاهز تماماً للرفع على **Vercel**. يحتوي على ملف `vercel.json` لتوجيه الطلبات لـ `server.js`.
-عند الرفع، يرجى إضافة جميع متغيرات البيئة `.env` المطلوبة في لوحة تحكم Vercel في قسم **Environment Variables**.
-
-> **ملاحظات Vercel الهامة:**
-> - تقنية الـ WebSockets (مثل `Socket.io`) لا تعمل على Vercel Serverless Functions المستمرة، تم تعديل الكود ليعمل بنظام Request/Response العادي على Vercel وتجنب أي أخطاء.
-> - ميزة رفع الملفات محلياً (`uploads/`) قد لا تعمل بشكل دائم على Vercel لأن الملفات فيه للقراءة فقط.
-
-## 🔑 متغيرات البيئة المطلوبة (.env)
-
-يجب إنشاء ملف `.env` في المسار الجذري وإضافة المتغيرات التالية:
-```env
-PORT=5000
-MONGO_URI=mongodb://localhost:27017/budgetwise # أو رابط MongoDB Atlas
-JWT_SECRET=your_jwt_secret_key_here
-FRONTEND_URL=http://localhost:3000 # ضع رابط الواجهة الأمامية (Vercel Frontend) للسماح لـ CORS
-SMTP_HOST=smtp.gmail.com
-SMTP_PORT=587
-SMTP_USER=your_email@gmail.com
-SMTP_PASS=your_email_password
-```
-
-## 📂 هيكل مجلدات المشروع
-
-- `config/`: إعدادات الاتصال بقاعدة البيانات وإعدادات تسجيل الدخول.
-- `controllers/`: المتحكمات التي تحتوي على منطق الأعمال لكل مسار.
-- `middleware/`: وسطاء Express (مثل المصادقة `protect` ومعالجة الأخطاء `errorHandler`).
-- `models/`: نماذج قاعدة البيانات (MongoDB/Mongoose).
-- `routes/`: مسارات واجهة برمجة التطبيقات (API Routes).
-- `services/`: الخدمات الخارجية (مثل خدمة البريد الإلكتروني وخدمة الذكاء الاصطناعي).
-- `utils/`: أدوات مساعدة (مثل حسابات الميزانية وتوليد الرموز).
-- `uploads/`: المجلد الذي يتم فيه تخزين الصور المرفوعة (مثل الصور الشخصية).
-- `server.js`: نقطة الدخول الرئيسية للخادم ومُصدِّر التطبيق (Export) لـ Vercel.
-- `vercel.json`: إعدادات بيئة Vercel.
-
-## 🌐 مسارات واجهة برمجة التطبيقات (API Endpoints)
-
-### المصادقة (`/api/auth`)
-- `POST /register` | `POST /login` | `POST /verify-otp` | `POST /reset-password` | `GET /me`
-
-### الميزانية (`/api/budget`)
-- `POST /` | `GET /me` | `PUT /:id` | `GET /stats` | `GET /tips`
-
-### الأنشطة (`/api/activities`)
-- `GET /` | `GET /search` | `GET /recommended` | `GET /:id`
-
-### الخطط (`/api/plan`)
-- `GET /me` | `POST /add` | `DELETE /remove/:itemId` | `GET /summary`
-
-### المحادثة الذكية (`/api/chat`)
-- `GET /sessions` | `POST /sessions` | `GET /sessions/:id` | `POST /sessions/:id/message` | `DELETE /sessions/:id`
-
-### الملف الشخصي (`/api/profile`)
-- `GET /` | `PUT /` | `PUT /preferences` | `PUT /password` | `POST /avatar` | `DELETE /`
+**Frontend Repository:** https://github.com/MoaazYahia-14/BudgetWise_FrontEnd
 
 ---
-**تطوير:** فريق BudgetWise
+
+## Technologies
+
+| Technology | Description |
+|------------|-------------|
+| Node.js | JavaScript runtime |
+| Express.js | Backend framework |
+| TypeScript | Static typing |
+| MongoDB Atlas | Cloud database |
+| Mongoose | MongoDB ODM |
+| JWT | Authentication |
+| Passport.js | Authorization |
+| Cloudinary | Cloud file storage |
+| Multer | File upload middleware |
+| Socket.IO | Real-time communication |
+| Nodemailer | Email service |
+
+---
+
+## Features
+
+- User Authentication
+- Email Verification (OTP)
+- Password Reset
+- Budget Management
+- Activity Management
+- Personal Plans
+- AI Financial Assistant
+- User Profile Management
+- Cloudinary File Upload
+- Real-Time Communication
+- Role-Based Authorization
+
+---
+
+## Project Structure
+
+```text
+src/
+├── config/
+├── controllers/
+├── middleware/
+├── models/
+├── routes/
+├── services/
+├── socket/
+├── utils/
+├── validators/
+└── server.ts
+```
+
+---
+
+## Installation
+
+### Requirements
+
+- Node.js v18 or later
+- MongoDB Atlas Database
+
+### Install Dependencies
+
+```bash
+npm install
+```
+
+### Environment Variables
+
+Create a `.env` file in the project root.
+
+```env
+PORT=5000
+
+MONGO_URI=
+
+JWT_SECRET=
+
+FRONTEND_URL=
+
+SMTP_HOST=
+
+SMTP_PORT=
+
+SMTP_USER=
+
+SMTP_PASS=
+
+CLOUDINARY_CLOUD_NAME=
+
+CLOUDINARY_API_KEY=
+
+CLOUDINARY_API_SECRET=
+```
+
+### Run the Server
+
+```bash
+npm run dev
+```
+
+The server will run on:
+
+```text
+http://localhost:5000
+```
+
+---
+
+## Deployment
+
+The project is ready for deployment on **Vercel**.
+
+Required Environment Variables:
+
+```env
+MONGO_URI=
+
+JWT_SECRET=
+
+FRONTEND_URL=https://budget-wise-front-end-w7fh.vercel.app
+
+SMTP_HOST=
+
+SMTP_PORT=
+
+SMTP_USER=
+
+SMTP_PASS=
+
+CLOUDINARY_CLOUD_NAME=
+
+CLOUDINARY_API_KEY=
+
+CLOUDINARY_API_SECRET=
+```
+
+---
+
+## Architecture
+
+- RESTful API Architecture
+- JWT Authentication
+- Role-Based Authorization
+- MongoDB Atlas Integration
+- Cloudinary File Storage
+- Real-Time Communication
+- Modular MVC Architecture
+- Production Ready
+
+---
+
+## Frontend
+
+The backend powers the BudgetWise Frontend built with **React.js**.
+
+**Frontend:** https://budget-wise-front-end-w7fh.vercel.app/
+
+**Frontend Repository:** https://github.com/MoaazYahia-14/BudgetWise_FrontEnd
