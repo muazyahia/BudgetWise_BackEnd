@@ -26,16 +26,12 @@ app.use(helmet({
 
 const corsOptions = {
   origin: function (origin, callback) {
-    // تحديد النطاقات المسموح بها (localhost للتطوير، والمتغير FRONTEND_URL للإنتاج)
     const allowedOrigins = [
-      'http://localhost:3000',
-      'http://localhost:5173',
       'https://budget-wise-front-end-w7fh.vercel.app',
-      process.env.FRONTEND_URL
-    ].filter(Boolean);
+      'http://localhost:3000'
+    ];
 
-    // السماح للطلبات بدون origin (مثل Postman أو السيرفر نفسه) أو إذا كان النطاق مسموحاً به
-    if (!origin || allowedOrigins.includes(origin) || origin.startsWith('http://localhost:')) {
+    if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
       callback(new Error('Not allowed by CORS'));
